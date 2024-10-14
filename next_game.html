@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click the Correct Picture</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #facff5, #d8fdff);
+            font-family: 'Retropix', cursive, sans-serif;
+            color: #000000;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .game {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .game img {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+        }
+        .game div {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+        .button {
+            background-color: #8a4dc3;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        #videoPopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1000;
+        }
+        #videoPopup video {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Find All of your bb</h1>
+    <p>Ah Kiu or Leeseo?</p>
+
+    <div class="game">
+        <div>
+            <img src="https://i.imgur.com/QmJMdlu.jpg" alt="Image 4" onclick="checkAnswer(this)">
+            <img src="https://i.imgur.com/mLw8PIx.jpg" alt="Image 1" onclick="checkAnswer(this)">
+            <img src="https://i.imgur.com/YEK4j2s.jpg" alt="Image 6" onclick="checkAnswer(this)">
+            <img src="https://i.imgur.com/jR3Fx4m.jpg" alt="Image 2" onclick="checkAnswer(this)">
+            <img src="https://i.imgur.com/czlf6uT.jpg" alt="Image 7" onclick="checkAnswer(this)">
+        </div>
+        <div>
+            <img src="https://i.imgur.com/tzr01hU.jpg" alt="Image 5" onclick="checkAnswer(this)">
+            <img src="https://i.imgur.com/PCsTEYa.jpg" alt="Image 3" onclick="checkAnswer(this)">
+            <img src="https://i.imgur.com/Oj2ZGwB.jpg" alt="Image 10" onclick="checkAnswer(this)">
+            <img src="https://i.imgur.com/EvPoNSh.jpg" alt="Image 9" onclick="checkAnswer(this)">
+            <img src="https://i.imgur.com/wEcSQpQ.jpg" alt="Image 8" onclick="checkAnswer(this)">
+        </div>
+    </div>
+
+    <p id="result"></p>
+
+    <div id="videoPopup">
+        <video controls>
+            <source src="https://i.imgur.com/6tcs2Ca.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <script>
+        const correctImages = ["QmJMdlu", "YEK4j2s", "czlf6uT", "tzr01hU", "Oj2ZGwB", "EvPoNSh", "wEcSQpQ"];
+        let correctCount = 0;
+
+        function checkAnswer(img) {
+            const result = document.getElementById('result');
+            const imgId = img.src.split('/').pop().split('.')[0];
+            if (correctImages.includes(imgId)) {
+                alert('Good Job bb');
+                correctCount++;
+                img.onclick = null; // Disable further clicks on this image
+                if (correctCount === correctImages.length) {
+                    setTimeout(() => {
+                        document.getElementById('videoPopup').style.display = 'block';
+                    }, 2000);
+                }
+            } else {
+                result.textContent = 'Try again!';
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+

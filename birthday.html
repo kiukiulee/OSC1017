@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #facff5, #d8fdff);
+            font-family: 'Retropix', cursive, sans-serif;
+            color: #000000;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .game {
+            margin: 20px 0;
+        }
+        .button {
+            background-color: #8a4dc3;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Birthday, Mochi bb!</h1>
+    <p>Welcome to your special birthday webpage for 2024! Enjoy some fun games below.</p>
+
+    <div class="game">
+        <h2>Guess the Number</h2>
+        <p>Try to guess the number between 1 and 100!</p>
+        <input type="number" id="guess" min="1" max="100">
+        <button class="button" onclick="checkGuess()">Guess</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        // Guess the Number Game
+        const correctNumber = 35;
+        let attempts = 0;
+
+        function checkGuess() {
+            const guess = document.getElementById('guess').value;
+            const result = document.getElementById('result');
+            attempts++;
+
+            if (guess == correctNumber) {
+                result.textContent = 'Smart bb';
+                setTimeout(() => {
+                    window.location.href = 'next_game.html';
+                }, 2000);
+            } else if (attempts == 1) {
+                result.textContent = 'Hint: It is a two-digit number.';
+            } else if (attempts == 2) {
+                result.textContent = 'Hint: It is a number related to you.';
+            } else {
+                result.textContent = '無tips架lah 加油繼續';
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
